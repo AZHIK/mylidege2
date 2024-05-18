@@ -10,16 +10,19 @@
    </div>
    <div class="col-md-10" style="height: auto;">
     <div class="card mt-3" style="padding: 2rem;  background-color:#b3967c2d ">
+      <div class="card-header d-flex flex-column align-items-center">
+        
       {% if applicant_details.profile_image %}
-        <img class="rounded-circle" style="width:16%; margin-left:42%; margin-top: 2rem;" 
-        src="{{applicant_details.profile_image.url}}" alt="">
-      {%else%}
-      <img class="rounded-circle" style="width:16%; margin-left:42%; margin-top: 2rem;" 
-      src="{%static 'img/avatar.jpg'%}" alt="">
-      {% endif %}
+      <img class="rounded-circle" style="width:150px; height: 150px; margin-top: 2rem;" 
+      src="{{applicant_details.profile_image.url}}" alt="">
+    {%else%}
+    <img class="rounded-circle" style="width:16%; margin-left:42%; margin-top: 2rem;" 
+    src="{%static 'img/avatar.jpg'%}" alt="">
+    {% endif %}
 
-        <h6 style="text-align: center;"><strong>{{applicant_details.firstname}} {{applicant_details.last_name}}</strong></h6>
-                 <h6 style="text-align: center; margin-bottom: 2rem;">{{applicant_details.user.email}}</h6>
+      <h6 style="text-align: center;"><strong>{{applicant_details.firstname}} {{applicant_details.last_name}}</strong></h6>
+               <h6 style="text-align: center; margin-bottom: 2rem;">{{applicant_details.user.email}}</h6>
+      </div>
         {%if addmitted.addmission_approval == "Approved"%}
         <p style="text-align: center; margin-top: 1rem; margin-bottom: 1rem; color: rgb(67, 238, 67);">
         <strong>!!!!!Congratulations {{applicant_details.firstname}}  {{applicant_details.last_name}} {{addmitted.feedback}}

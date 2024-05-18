@@ -14,16 +14,19 @@
     Back to application
   </a>
     <div class="card mt-1" style="padding: 2rem; background-color:#b3967c2d ;">
-      {% if applicant_details.profile_image %}
-        <img class="rounded-circle" style="width:20%; margin-left:40%; margin-top: 2rem; height: auto;" 
+      <div class="card-header d-flex flex-column align-items-center">
+        {% if applicant_details.profile_image %}
+        <img class="rounded-circle" style="width:200px; height: 200px; margin-top: 2rem;" 
         src="{{applicant_details.profile_image.url}}" alt="">
       {%else%}
-      <img class="rounded-circle" style="width:16%; margin-left:42%; margin-top: 2rem;" 
+      <img class="rounded-circle" style="width:150px; height: 150px; margin-top: 2rem;" 
       src="{%static 'img/avatar.jpg'%}" alt="">
       {% endif %}
 
         <h6 style="text-align: center;"><strong>{{applicant_details.firstname}} {{applicant_details.last_name}}</strong></h6>
                  <h6 style="text-align: center; margin-bottom: 2rem;">{{applicant_details.user.email}}</h6>
+      </div>
+  
 
                  <div class="accordion" id="accordionPanelsStayOpenExample">
                   <div class="accordion-item">

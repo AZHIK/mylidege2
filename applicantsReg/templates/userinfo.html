@@ -14,13 +14,15 @@
    </div>
    <div class="col-md-6" style="height: auto;">
     <div class="card mt-3" style="padding: 2rem;">
-        <img class="rounded-circle" style="width:16%; margin-left:42%; margin-top: 2rem;" 
+      <div class="card-header d-flex flex-column align-items-center">
+        <img class="rounded-circle" style="width:150px; height: 150px; margin-top: 2rem;" 
         src="{{applicant_details.profile_image.url}}" alt="">
         <h6 style="text-align: center;"><strong>{{applicant_details.firstname}} {{applicant_details.last_name}}</strong></h6>
                  <h6 style="text-align: center; margin-bottom: 2rem;">{{applicant_details.user.email}}</h6>
                  {%if user.is_superuser%}
                  <p style="text-align: center; color: gold;"><strong>Reffered by: {{applicant_details.user.referred_by}}</strong></p>
                  {%endif%}
+      </div>
                  <div class="accordion" id="accordionPanelsStayOpenExample">
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">

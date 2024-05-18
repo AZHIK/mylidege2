@@ -4,16 +4,16 @@
 
 {%block content%}
 <div class="row" style="background-color:#f1e7dd27; height:cover; margin-bottom: 2rem;">
-    <div class="col-md-3">
-       {%if applicant_details.profile_image%}
-       <img class="rounded-circle" src="{{applicant_details.profile_image.url}}" alt="" style="width: 50%; margin-left: 25%; margin-top: 5rem;">
-       <h6 style="text-align: center;">{{applicant_details.firstname}} {{applicant_details.last_name}}</h6>
-       <p style="text-align: center;">{{applicant_details.user.email}}</p>
-       {%else%}
-       <img class="rounded-circle" src="{%static 'img/avatar.jpg'%}" alt="" style="width: 50%; margin-left: 25%; margin-top: 3rem;">
-       <h6 style="text-align: center;margin-top: 0.5rem;">{{applicant_details.user.email}}</h6>
-       {%endif%}
-    </div>
+    <div class="col-md-3 d-flex flex-column align-items-center">
+        {% if applicant_details.profile_image %}
+        <img class="rounded-circle" src="{{applicant_details.profile_image.url}}" alt="" style="width:150px; height: 150px; margin-top: 5rem;">
+        <h6 style="text-align: center;">{{applicant_details.firstname}} {{applicant_details.last_name}}</h6>
+        <p style="text-align: center;">{{applicant_details.user.email}}</p>
+        {% else %}
+        <img class="rounded-circle" src="{% static 'img/avatar.jpg' %}" alt="" style="width: 100px; height: 100px; margin-top: 5rem;"> <!-- Modified -->
+        <h6 style="text-align: center;margin-top: 0.5rem;">{{applicant_details.user.email}}</h6>
+        {% endif %}
+     </div>
     <div class="col-md-8">
         <div class="card" style="margin-top: 4.5rem; padding: 1rem;">
             
