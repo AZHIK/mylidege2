@@ -14,10 +14,10 @@
     <div class="col-lg-8">
         <div class="card" style="width: 100%; padding: 1rem; margin-top: 1rem; margin-bottom: 3rem;">
             <div class="row">
-                <div class="col-md-6" style="background-image:linear-gradient(to right, #695745 , #D9CCC1);">
+                <div class="col-md-6" style="border: solid 5px #974b00;">
                    <img style="width: 100%;" src="{%static 'img/lidege_logo__1__page-0001-removebg-preview.png'%}" alt="">
                 </div>
-                <div class="col-md-6" style="background-color: #e2e1e02f;">
+                <div class="col-md-6">
                     <h5 style="text-align: center;"> Register</h5>
                     <form action="" method="POST">
                         {%csrf_token%}  
@@ -31,8 +31,8 @@
                                 {{form.password2|as_crispy_field}}
                             </div>
                         </div>
-                        <input type="submit" value="Register" class="btn" style="background-color:#29221b; color: white; width: 40%; margin-top: 0.4rem;">
-                        <p style="margin-top: 0.3rem; margin-left: 1rem;">already have account?<a href="{%url 'login'%}" style="text-decoration: none;">login here</a></p>
+                        <input type="submit" value="Register" class="btn" style="background-color:#974b00; color: white; width: 40%; margin-top: 0.4rem; margin-left: 30%;">
+                        <p style="margin-top: 0.3rem; text-align: center;">already have account?<a href="{%url 'login'%}" style="text-decoration: none;">login here</a></p>
                     </form>
                 </div>
             </div>
