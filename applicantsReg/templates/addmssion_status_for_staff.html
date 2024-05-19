@@ -59,14 +59,14 @@
               <tr>
                 {%if user.is_superuser%}
                   {%if addmitted.addmission_approval == "Approved"%}
-                  <td colspan="2"><button class="btn btn-success" style="width: 40%; margin-left: 30%;">Addmission Approved</button></td>
+                  <td colspan="2"><button class="btn btn-success" style="width: 40%; margin-left: 30%; border-radius: 50px; padding: 10px 20px;">Addmission Approved</button></td>
                   {%elif addmitted.addmission_approval == "Rejected" %}
-                  <td colspan="2"><button class="btn btn-danger" href="#" style="width: 40%; margin-left: 30%;">Addmission Rejected</button></td>
+                  <td colspan="2"><button class="btn btn-danger" href="#" style="width: 40%; margin-left: 30%; border-radius: 50px; padding: 10px 20px;">Addmission Rejected</button></td>
                   {%else%}
                   <td colspan="2">
-                    <a class="btn btn-warning" href="{%url 'approve' addmitted.user.id%}" style="width: 40%; margin-left: 30%; margin-bottom: 1rem;">Approve</a>
+                    <a class="btn btn-warning" href="{%url 'approve' addmitted.user.id%}" style="width: 40%; margin-left: 30%; margin-bottom: 1rem; border-radius: 50px; padding: 10px 20px;">Approve</a>
 
-                  <a class="btn btn-danger" href="{%url 'reject' addmitted.user.id%}" style="width: 40%; margin-left: 30%;">Reject</a>
+                  <a class="btn btn-danger" href="{%url 'reject' addmitted.user.id%}" style="width: 40%; margin-left: 30%; border-radius: 50px; padding: 10px 20px;">Reject</a>
                 </td>
                   {%endif%}
                   </a>
