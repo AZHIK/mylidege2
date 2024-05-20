@@ -9,7 +9,7 @@
 
    </div>
    <div class="col-md-8" style="height: auto;">
-    <div class="card mt-3"   style="background-color:#b3967c2d">
+    <div class="card mt-3">
       <div class="card-header d-flex flex-column align-items-center">
       {% if applicant_details.profile_image %}
         <img class="rounded-circle" style="width:100px; height: 100px; margin-top: 2rem;" 
@@ -57,12 +57,12 @@
               </tr>
 
               <tr>
-                {%if user.is_superuser%}
+                {%if user.is_staff%}
                   {%if addmitted.addmission_approval == "Approved"%}
                   <td colspan="2"><button class="btn btn-success" style="width: 40%; margin-left: 30%; border-radius: 50px; padding: 10px 20px;">Addmission Approved</button></td>
                   {%elif addmitted.addmission_approval == "Rejected" %}
                   <td colspan="2"><button class="btn btn-danger" href="#" style="width: 40%; margin-left: 30%; border-radius: 50px; padding: 10px 20px;">Addmission Rejected</button></td>
-                  {%else%}
+                  {%elif user.is_superuser%}
                   <td colspan="2">
                     <a class="btn btn-warning" href="{%url 'approve' addmitted.user.id%}" style="width: 40%; margin-left: 30%; margin-bottom: 1rem; border-radius: 50px; padding: 10px 20px;">Approve</a>
 

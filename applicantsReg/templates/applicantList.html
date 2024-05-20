@@ -108,11 +108,12 @@
             <th scope="col">Profile image</th>
             <th scope="col">Full Name</th>
             <th scope="col">Email</th>
+            <th scope="col">admission status</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          {%for app in applicant_details %}
+          {%for app in applicant_details%}
           {% if app.profile_image%}
           <tr>
             <td>
@@ -121,7 +122,8 @@
 
             <td>{{app.firstname}}  {{app.last_name}}</td>
             <td>{{app.user.email}}</td>
-            <td> <a class="btn btn-success" href="{%url 'appview' app.user.id%}">view</a></td>
+            <td><a class="btn btn-success" href="{%url 'addmission_status_staff' app.user.id%}" >view</a></td>
+            <td> <a class="btn btn-warning" href="{%url 'appview' app.user.id%}">admit student</a></td>
           </tr>
           {%endif%}
           {%endfor%}

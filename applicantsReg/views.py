@@ -278,7 +278,6 @@ def addmission_status(request,user):
     addmitted = Addmitted_student.objects.get(user = user)
     if addmitted :
         return render(request,'addmssion_status_for_staff.html',{"addmitted":addmitted,"applicantDetails":applicantDetails})
-        
 
 
 def applicant_details_display_view(request):
@@ -371,11 +370,11 @@ def addmission_view(request):
 
 
 def home(request):
-    if use.is_authenticated:
+    if user.is_authenticated:
         if user.is_staff:
-            redirect('applist')
+            return redirect("applist")
         else:
-            redirect('profile')
+            return redirect("profile")   
     return render(request,'homepage.html')
 
 def logout_view(request):
