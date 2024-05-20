@@ -14,7 +14,6 @@ from django.contrib.auth import get_user_model
 def register(request):
     if request.user.is_authenticated:
         return redirect("startApplication")
-    
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -74,13 +73,19 @@ def is_admin(user):
 @login_required
 @user_passes_test(is_staff)
 def generate_referral_link(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
+
     CustomUser = get_user_model()
     username = request.user.username
     registration_url = reverse('register')
     referral_link = request.build_absolute_uri(f"{registration_url}?referral_username={username}")
     return render(request, 'referral_link.html', {'referral_link': referral_link})
 
+
 def applicant_details_view(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
     if request.user.is_staff:
         return redirect("applist")
     
@@ -103,14 +108,16 @@ def applicant_details_view(request):
         messages.warning(request, "You don't have any profile. Please contact your system admin.")
         return redirect("home")
 
-@login_required  
+
 def startApplication(request):
     if not request.user.is_authenticated:
         return redirect("login")
     return render(request,'startRegistration.html')
 
-@login_required
+
 def guardian_details_view(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
     if request.user.is_staff:
         return redirect("applist")
     applicant_details = getattr(request.user, 'personal_details', None)
@@ -136,8 +143,9 @@ def guardian_details_view(request):
         return redirect("home")
 
 
-@login_required
 def academic_qualification_view(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
     if request.user.is_staff:
         return redirect("applist")
     applicant_details = getattr(request.user, 'personal_details', None)
@@ -162,8 +170,10 @@ def academic_qualification_view(request):
         return redirect("home")
     
 
-@login_required
+
 def selections_view(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
     if request.user.is_staff:
         return redirect("applist")
     applicant_details = getattr(request.user, 'personal_details', None)
@@ -188,8 +198,10 @@ def selections_view(request):
         return redirect("home")
 
 
-@login_required
+
 def other_qualifications_view(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
     applicant_details = getattr(request.user, 'personal_details', None)
     if request.user.is_staff:
         return redirect("applist")
@@ -215,7 +227,7 @@ def other_qualifications_view(request):
         messages.warning(request, error_message)
         return redirect("home")
 
-@login_required
+
 @user_passes_test(is_staff)
 def addmitted_student_view(request,user):
     if not request.user.is_authenticated:
@@ -240,19 +252,24 @@ def addmitted_student_view(request,user):
 
 
 def approve_addmission(request,user):
+    if not request.user.is_authenticated:
+        return redirect("login")
     addmitted = Addmitted_student.objects.get(user = user)
     addmitted.addmission_approval = "Approved"
     addmitted.save()
     return redirect("addmission_status_staff",user = user)
 
+
 def reject_addmission(request,user):
+    if not request.user.is_authenticated:
+        return redirect("login")
     addmitted = Addmitted_student.objects.get(user = user)
     addmitted.addmission_approval = "Rejected"
     addmitted.save()
     return redirect("addmission_status_staff",user = user)
 
 
-@login_required
+
 @user_passes_test(is_staff)
 def addmission_status(request,user):
     if not request.user.is_authenticated:
@@ -264,8 +281,9 @@ def addmission_status(request,user):
         
 
 
-@login_required
 def applicant_details_display_view(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
     if request.user.is_staff:
         return redirect("applist")
     applicant_details = getattr(request.user, 'personal_details', None)
@@ -292,7 +310,7 @@ def applicant_details_display_view(request):
         return redirect("home")
 
 
-@login_required
+
 @user_passes_test(is_staff)
 def applicant_list(request):
     if not request.user.is_authenticated:
@@ -311,9 +329,11 @@ def applicant_list(request):
 
         return render(request, "applicantList.html",context)
     
-@login_required
+
 @user_passes_test(is_staff)
 def applicant_view(request,user):
+    if not request.user.is_authenticated:
+        return redirect("login")
     applicantDetails = Applicant_Personal_Details.objects.get(user = user)
     addmittedStud = Addmitted_student.objects.get(user = user)
     guardian_details = Applicants_guardian_details.objects.get(user = user)
@@ -335,8 +355,10 @@ def applicant_view(request,user):
 
         return render(request, "userinfo.html",context)
 
-@login_required
+
 def addmission_view(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
     addmitted = getattr(request.user, 'addmitted_student', None)
     applicant_details = getattr(request.user, 'personal_details', None)
     if addmitted or applicant_details:
@@ -349,15 +371,11 @@ def addmission_view(request):
 
 
 def home(request):
-    if request.user.is_authenticated:
-        if request.user.is_staff:
-            return redirect("applist")
-        else:
-            return redirect('profile')
-    
     return render(request,'homepage.html')
 
 def logout_view(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
     logout(request)
     return redirect("home")
 
