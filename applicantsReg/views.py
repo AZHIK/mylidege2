@@ -371,6 +371,11 @@ def addmission_view(request):
 
 
 def home(request):
+    if use.is_authenticated:
+        if user.is_staff:
+            redirect('applist')
+        else:
+            redirect('profile')
     return render(request,'homepage.html')
 
 def logout_view(request):
