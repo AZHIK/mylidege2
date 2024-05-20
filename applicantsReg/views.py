@@ -370,8 +370,8 @@ def addmission_view(request):
 
 
 def home(request):
-    if user.is_authenticated:
-        if user.is_staff:
+    if request.user.is_authenticated:
+        if request.user.is_staff:
             return redirect("applist")
         else:
             return redirect("profile")   
